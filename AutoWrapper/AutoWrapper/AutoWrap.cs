@@ -45,7 +45,7 @@ namespace AutoWrapper
 
 			var contractGenerator = new ContractGenerator(contractOptions, container);
 
-			var codeGenerator = new CodeGenerator();
+			var codeGenerator = new CodeGenerator { Pragma = Pragma };
 
 			var ns = new CodeNamespace(namespaceForWrappers);
 
@@ -71,5 +71,7 @@ namespace AutoWrapper
 
 		public static IContractNamingStrategy ContractNamingStrategy = new DefaultNamingStrategy();
 		public static ITypeNamingStrategy TypeNamingStrategy = new DefaultNamingStrategy();
+
+		public static CodeGeneratorPragma Pragma { get; } = new CodeGeneratorPragma();
 	}
 }

@@ -27,7 +27,7 @@ namespace AutoWrapper.CodeGen
 		{
 			using (var writer = new StringWriter())
 			{
-				_provider.GenerateCodeFromStatement(new CodeSnippetStatement("#pragma warning disable"), writer, _options);
+				_provider.GenerateCodeFromStatement(new CodeSnippetStatement(Pragma.Warning.ToString()), writer, _options);
 
 				_provider.GenerateCodeFromCompileUnit(codeCompileUnit, writer, _options);
 
@@ -41,6 +41,8 @@ namespace AutoWrapper.CodeGen
 		}
 
 		public static CodeGeneratorOptions StandardOptions => new CodeGeneratorOptions { BracingStyle = "C", IndentString = "\t"};
+
+		public CodeGeneratorPragma Pragma { get; internal set; } = new CodeGeneratorPragma();
 
 		private readonly CodeDomProvider _provider;
 		private readonly CodeGeneratorOptions _options;

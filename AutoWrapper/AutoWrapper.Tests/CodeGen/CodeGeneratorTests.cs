@@ -77,6 +77,16 @@ namespace AutoWrapper.Tests.CodeGen
 			Then.Constructor.GetParameters().First().ParameterType.Should().Be<SomeType>();
 		}
 
+		[Fact]
+		public void ShouldAddPragma_WhenGenerating_GivenCompilerWarningDisabled()
+		{
+			Given.PragmaWarningDisable = 618;
+
+			When(Generating);
+
+			Then.Code.Should().Contain("#pragma warning disable 618");
+		}
+
 		protected override void Creating()
 		{
 			var contractOptions = new ContractGeneratorOptionsBuilder();
@@ -106,6 +116,9 @@ namespace AutoWrapper.Tests.CodeGen
 			ns.Types.Add(Then.TypeGenerator.GenerateDeclaration(typeof(SomeType)));
 			
 			codeCompileUnit.Namespaces.Add(ns);
+
+			if (GivensDefined("PragmaWarningDisable"))
+				Then.Target.Pragma.Warning.Disable(Given.PragmaWarningDisable);
 
 			Then.Code = Then.Target.GenerateCode(codeCompileUnit);
 		}

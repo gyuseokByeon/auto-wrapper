@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="AutoWrap.cs" />
     <Compile Include="CodeGen\CodeGenerator.cs" />
+    <Compile Include="CodeGen\CodeGeneratorPragma.cs" />
     <Compile Include="CodeGen\ContractGenerator.cs" />
     <Compile Include="CodeGen\ContractGeneratorOptionsBuilder.cs" />
     <Compile Include="CodeGen\Contracts\IContractGeneratorOptions.cs" />
